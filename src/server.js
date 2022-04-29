@@ -1,0 +1,11 @@
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+const Routes = require("./routes");
+const connectDatabase = require("./database");
+connectDatabase();
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(Routes);
+app.listen(3001, () => console.log("server rodando na porta 3001"));
