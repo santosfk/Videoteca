@@ -8,4 +8,14 @@ routes.get("/", (req, res) => {
 routes.get("/videos", videoController.index);
 routes.post("/videos", videoController.store);
 routes.put("/videos/:id", videoMiddleware.validadeID, videoController.update);
+routes.delete(
+  "/videos/:id",
+  videoMiddleware.validadeID,
+  videoController.delete
+);
+routes.patch(
+  "/videos/:id",
+  videoMiddleware.validadeID,
+  videoController.updateLike
+);
 module.exports = routes;

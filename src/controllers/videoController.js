@@ -1,6 +1,7 @@
 const { response } = require("express");
 const Video = require("../models/video");
 const { v4: uuid } = require("uuid");
+const res = require("express/lib/response");
 module.exports = {
   async index(request, response) {
     try {
@@ -40,6 +41,25 @@ module.exports = {
     try {
       await response.video.save();
       return response.status(200).json({ message: "video is updated" });
+    } catch (err) {
+      response.status(500).json({ error: err.message });
+    }
+  },
+  async delete(request, response) {
+    try {
+      await response.video.remove();
+      return response.status(200).json({ message: "videos has been removed" });
+    } catch (err) {
+      response.status(500).json({ error: err.message });
+    }
+  },
+  async updateLike(request, response) {
+    response.video.like = !response.video.like;
+    try {
+      await response.video.save();
+      return response
+        .status(200)
+        .json({ message: `${response.video.like ? "liked" : "desliked"}` });
     } catch (err) {
       response.status(500).json({ error: err.message });
     }
