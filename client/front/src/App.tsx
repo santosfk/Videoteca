@@ -5,7 +5,8 @@ function App() {
   return (
     <div>
       <Header />
-      <Footer />;
+      <AddButton />
+      <Footer />
     </div>
   );
 }
