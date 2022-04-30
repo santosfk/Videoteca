@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import VideoItem from "../VideoItem/VideoItem";
+import api from "../../services/api";
 type Videos = {
   title: string;
   _id: string;
@@ -13,12 +14,11 @@ export default function VideoArea() {
   });
   const GetData = async () => {
     try {
-      const url = "http://localhost:3001/videos";
-      const response = await fetch(url);
-      const data = await response.json();
-      setVideosData(data.videos);
-    } catch (error) {
-      console.log(error);
+      const response = await api.get("videos");
+      const data = response.data.videos;
+      setVideosData(data);
+    } catch (e) {
+      console.log(e);
     }
   };
   return (
