@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import VideoItem from "../VideoItem/VideoItem";
 type Videos = {
   title: string;
   _id: string;
@@ -25,12 +25,12 @@ export default function VideoArea() {
     <div className="flex justify-center h-4/5 w-full items-center ">
       {videosData.map((item) => {
         return (
-          <div
+          <VideoItem
             key={item._id}
-            className="bg-red-400 w-64 h-64 m-3 rounded-md flex justify-center p-5 "
-          >
-            <h1>{item.title}</h1>
-          </div>
+            title={item.title}
+            link={item.link}
+            like={item.like}
+          />
         );
       })}
     </div>
