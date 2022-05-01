@@ -22,7 +22,7 @@ export default function VideoArea() {
     }
   };
   return (
-    <div className="flex justify-center h-4/5 w-full items-center ">
+    <div className="flex flex-col justify-center items-center md:flex-row   ">
       {videosData.map((item) => {
         return (
           <VideoItem
