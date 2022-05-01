@@ -30,6 +30,7 @@ export default function VideoArea() {
             title={item.title}
             link={item.link}
             like={item.like}
+            id={item._id}
           />
         );
       })}
