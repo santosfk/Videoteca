@@ -4,7 +4,6 @@ import { BsPencilSquare as PencilIcon } from "react-icons/bs";
 import { MdOutlineDeleteOutline as DeleteIcon } from "react-icons/md";
 import { AiFillHeart as HeartICon } from "react-icons/ai";
 import EditModal from "../EditModal/EditModal";
-import AddModal from "../AddModal/AddModal";
 import api from "../../services/api";
 type Props = {
   title: string;
