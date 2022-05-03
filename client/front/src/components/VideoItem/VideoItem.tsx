@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { AiOutlineAppstoreAdd as AddIcon } from "react-icons/ai";
+import useAxios from "../../hooks/useAxios";
 import { BsPencilSquare as PencilIcon } from "react-icons/bs";
 import { MdOutlineDeleteOutline as DeleteIcon } from "react-icons/md";
 import { AiFillHeart as HeartICon } from "react-icons/ai";
 import EditModal from "../EditModal/EditModal";
-import AddModal from "../AddModal/AddModal";
 import api from "../../services/api";
+import { Videos } from "../../types/videos";
 type Props = {
   title: string;
   link: string;
@@ -14,15 +14,33 @@ type Props = {
 };
 export default function VideoItem({ title, link, like, id }: Props) {
   const [openEditModal, setOpenEditModal] = useState(false);
-
+  const { data, mutate } = useAxios("videos");
   const handleLike = (id: string) => {
     api.patch(`videos/${id}`);
+    const updateVideos = {
+      videos: data.videos?.map((video: Videos) => {
+        if (video._id === id) {
+          return {
+            ...video,
+            title: video.title,
+            link: video.link,
+            like: !video.like,
+          };
+        }
+        return video;
+      }),
+    };
+    mutate(updateVideos, false);
   };
   const handleDelete = (id: string) => {
     api.delete(`videos/${id}`);
+    const updateVideos = {
+      videos: data.videos?.filter((video: Videos) => video._id !== id),
+    };
+    mutate(updateVideos, false);
   };
   return (
-    <div className="m-10 w-64 bg-gray-800 h-72 p-6 rounded-2xl ">
+    <div className="m-10 w-72 bg-gray-800 h-80 p-6 rounded-2xl ">
       {openEditModal && (
         <EditModal
           setOpenModal={setOpenEditModal}
