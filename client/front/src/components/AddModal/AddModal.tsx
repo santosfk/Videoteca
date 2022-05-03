@@ -1,17 +1,29 @@
 import React, { useState } from "react";
+import { mutate } from "swr";
 import api from "../../services/api";
+import useAxios from "../../hooks/useAxios";
+import { Videos } from "../VideoArea/VideoArea";
 type Props = {
   setOpenModal: Function;
+};
+type AddVideo = {
+  title: string;
+  link: string;
 };
 export default function AddModal({ setOpenModal }: Props) {
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
+  const { data, mutate } = useAxios("videos");
   const handleSubmit = () => {
     const video = {
       title,
       link,
     };
     api.post("videos", video);
+    const updateVideo = {
+      videos: [...data.videos, video],
+    };
+    mutate(updateVideo, false);
     setOpenModal(false);
   };
   return (

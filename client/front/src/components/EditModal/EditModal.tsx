@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { mutate } from "swr";
 import api from "../../services/api";
+import useAxios from "../../hooks/useAxios";
+import { Videos } from "../VideoArea/VideoArea";
 type Props = {
   setOpenModal: Function;
   videoTitle: string;
@@ -14,12 +17,22 @@ export default function EditModal({
 }: Props) {
   const [title, setTitle] = useState(videoTitle);
   const [link, setLink] = useState(videoLink);
+  const { data, mutate } = useAxios("videos");
   const handleSubmit = () => {
     const video = {
       title,
       link,
     };
     api.put(`videos/${id}`, video);
+    const updateVideos = {
+      videos: data.videos?.map((video: Videos) => {
+        if (video._id === id) {
+          return { ...video, title, link };
+        }
+        return video;
+      }),
+    };
+    mutate(updateVideos, false);
     setOpenModal(false);
   };
   return (
