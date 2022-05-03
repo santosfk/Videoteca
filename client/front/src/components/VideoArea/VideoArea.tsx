@@ -1,13 +1,8 @@
 import React from "react";
 import VideoItem from "../VideoItem/VideoItem";
-
+import { Videos } from "../../types/videos";
 import useAxios from "../../hooks/useAxios";
-export type Videos = {
-  title: string;
-  _id: string;
-  link: string;
-  like: boolean;
-};
+
 export default function VideoArea() {
   const { data } = useAxios("videos");
 

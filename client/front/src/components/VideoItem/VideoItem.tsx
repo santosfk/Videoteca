@@ -5,7 +5,7 @@ import { MdOutlineDeleteOutline as DeleteIcon } from "react-icons/md";
 import { AiFillHeart as HeartICon } from "react-icons/ai";
 import EditModal from "../EditModal/EditModal";
 import api from "../../services/api";
-import { Videos } from "../VideoArea/VideoArea";
+import { Videos } from "../../types/videos";
 type Props = {
   title: string;
   link: string;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { mutate } from "swr";
 import api from "../../services/api";
 import useAxios from "../../hooks/useAxios";
-import { Videos } from "../VideoArea/VideoArea";
+import { Videos } from "../../types/videos";
 type Props = {
   setOpenModal: Function;
 };
