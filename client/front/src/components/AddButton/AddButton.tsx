@@ -3,7 +3,7 @@ import AddModal from "../AddModal/AddModal";
 export default function AddButton() {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <div className="w-full flex justify-center mb-44">
+    <div className="w-full flex justify-center mb-40 mt-20">
       {openModal && <AddModal setOpenModal={setOpenModal} />}
       <button
         onClick={() => setOpenModal(true)}
