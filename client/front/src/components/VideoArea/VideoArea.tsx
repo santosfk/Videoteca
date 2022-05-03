@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import VideoItem from "../VideoItem/VideoItem";
-import api from "../../services/api";
-type Videos = {
+
+import useAxios from "../../hooks/useAxios";
+export type Videos = {
   title: string;
   _id: string;
   link: string;
   like: boolean;
 };
 export default function VideoArea() {
-  const [videosData, setVideosData] = useState<Videos[]>([]);
-  useEffect(() => {
-    GetData();
-  });
-  const GetData = async () => {
-    try {
-      const response = await api.get("videos");
-      const data = response.data.videos;
-      setVideosData(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  const { data } = useAxios("videos");
+
   return (
     <div className="flex flex-col justify-center items-center md:flex-row   ">
-      {videosData.map((item) => {
+      {data?.videos?.map((item: Videos) => {
         return (
           <VideoItem
             key={item._id}
