@@ -40,7 +40,7 @@ export default function VideoItem({ title, link, like, id }: Props) {
     mutate(updateVideos, false);
   };
   return (
-    <div className="m-10 w-64 bg-gray-800 h-72 p-6 rounded-2xl ">
+    <div className="m-10 w-72 bg-gray-800 h-80 p-6 rounded-2xl ">
       {openEditModal && (
         <EditModal
           setOpenModal={setOpenEditModal}

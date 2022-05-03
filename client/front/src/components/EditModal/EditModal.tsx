@@ -35,7 +35,7 @@ export default function EditModal({
     setOpenModal(false);
   };
   return (
-    <div className="w-96 h-96 bottom-6  flex flex-col items-center bg-teal-600 absolute rounded justify-around">
+    <div className="w-96 h-96 bottom-6  flex flex-col items-center bg-slate-400 absolute rounded justify-around">
       <h2
         className="text-lg text-slate-100 cursor-pointer hover:translate-y-1 duration-200"
         onClick={() => setOpenModal(false)}
