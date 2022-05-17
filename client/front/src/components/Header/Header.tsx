@@ -11,7 +11,7 @@ export default function Header() {
       <div className="flex gap-9">
         <Heart
           className="text-3xl text-slate-100 cursor-pointer"
-          onClick={() => setOpenModal(true)}
+          onClick={() => setOpenModal(!openModal)}
         />
         <a href="https://github.com/santosfk/Videoteca">
           <BsGithub className="text-3xl text-slate-100" />
