@@ -8,9 +8,13 @@ export default function FavoriteModal() {
       {data?.videos?.map((video: Videos) => {
         if (video.like.valueOf() === true) {
           return (
-            <div className="flex inline-flex gap-4 justify-center items-center">
-              <h1>{video.title}</h1>
-              <a href={video.link} target="_blank" className="flex-1">
+            <div className="flex inline-flex gap-3 items-center m-2">
+              <h1 className="text-lg text-center  w-2/4">{video.title}</h1>
+              <a
+                href={video.link}
+                target="_blank"
+                className=" bg-slate-600 p-1 w-12 text-center text-white rounded-md"
+              >
                 ver
               </a>
             </div>
